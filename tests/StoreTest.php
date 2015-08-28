@@ -53,6 +53,20 @@
             $this->assertEquals("New Balance", $result);
         }
 
+        function test_getId() {
+
+            //Arrange
+            $store_name = "Portland Running Company";
+            $id = null;
+            $test_store = new Store($store_name, $id);
+            $test_store->save();
+
+            //Act
+            $result = $test_store->getId();
+
+            //Assert
+            $this->assertEquals(true, is_numeric($result));
+        }
 
 
     } //End Class
