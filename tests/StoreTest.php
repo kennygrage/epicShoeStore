@@ -36,5 +36,24 @@
             //Assert
             $this->assertEquals($result, $store_name);
         }
+
+        function testSetStoreName()
+        {
+            //Arrange
+            $store_name = "Portland Running Company";
+            $id = null;
+            $test_store = new Store($store_name, $id);
+            $test_store->save();
+
+            //Act
+            $test_store->setStoreName("New Balance");
+            $result = $test_store->getStoreName();
+
+            //Assert
+            $this->assertEquals("New Balance", $result);
+        }
+
+
+
     } //End Class
 ?>
