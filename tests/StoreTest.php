@@ -83,6 +83,23 @@
             $this->assertEquals([$test_store], $result);
         }
 
+        function testUpdate () {
+            //Arrange
+            $store_name = "Portland Running Company";
+            $id = 1;
+            $test_store = new Store($store_name, $id);
+            $test_store->save();
+
+            $new_store_name = "New Balance";
+
+            //Act
+            $test_store->update($new_store_name);
+
+            //Assert
+            $this->assertEquals($new_store_name, $test_store->getStoreName());
+        }
+
+
 
     } //End Class
 ?>
