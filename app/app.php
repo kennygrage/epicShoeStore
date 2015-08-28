@@ -31,7 +31,7 @@ $app->get("/stores", function() use ($app) {
 });
 
 $app->post("/stores", function() use ($app) {
-  $store = new Store($_POST['store_name'], $_POST['crn']);
+  $store = new Store($_POST['store_name']);
   $store->save();
   return $app['twig']->render('stores.html.twig', array('stores' => Store::getAll()));
 });
@@ -44,7 +44,6 @@ $app->get("/stores/{id}", function($id) use ($app) {
 $app->post("/stores/{id}/edit", function($id) use($app) {
     $store = Store::find($id);
     $store->update($_POST['store_name']);
-    $store->updateCRN($_POST['crn']);
     return $app['twig']->render('store.html.twig', array('store' => $store, 'shoes' => $store->getShoes(), 'all_shoes' => Shoe::getAll()));
 });
 
@@ -56,7 +55,7 @@ $app->get("/stores/{id}/delete", function($id) use($app) {
 
 $app->post("/shoes", function () use ($app) {
   $id = null;
-  $shoe = new Shoe($_POST['shoe_name'], $_POST['enroll_date'], $id);
+  $shoe = new Shoe($_POST['shoe_name'], $id);
   $shoe->save();
   return $app['twig']->render('shoes.html.twig', array('shoes' => Shoe::getAll(), 'stores' => Store::getAll()));
 });
@@ -69,7 +68,6 @@ $app->get("/shoes/{id}", function ($id) use ($app) {
 $app->post("/shoes/{id}/edit", function ($id) use ($app) {
     $shoe = Shoe::find($id);
     $shoe->update($_POST['shoe_name']);
-    $shoe->updateEnroll($_POST['enroll_date']);
     return $app['twig']->render('shoe.html.twig', array('shoe' => $shoe, 'stores' => $shoe->getStores(), 'all_stores' => Store::getAll()));
 });
 
