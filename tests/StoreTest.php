@@ -99,7 +99,25 @@
             $this->assertEquals($new_store_name, $test_store->getStoreName());
         }
 
+        function testDeleteStore()
+        {
+            //Arrange
+            $store_name = "Portland Running Company";
+            $id = 1;
+            $test_store = new Store($store_name, $id);
+            $test_store->save();
 
+            $store_name2 = "New Balance";
+            $id2 = 2;
+            $test_store2 = new Store($store_name, $id2);
+            $test_store2->save();
+
+            //Act
+            $test_store->deleteOne();
+
+            //Assert
+            $this->assertEquals([$test_store2], Store::getAll());
+        }
 
 
     } //End Class
