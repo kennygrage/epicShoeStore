@@ -27,7 +27,7 @@
         //Save a store to stores table:
         function save() {
             $statement = $GLOBALS['DB']->exec("INSERT INTO stores (store_name)
-                    VALUES ('{$this->getStoreName()}';");
+                    VALUES ('{$this->getStoreName()}');");
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
@@ -41,8 +41,7 @@
                 $returned_shoe = $result->fetchAll(PDO::FETCH_ASSOC);
                 $shoe_name = $returned_shoe[0]['shoe_name'];
                 $id = $returned_shoe[0]['id'];
-                $enroll_date = $returned_shoe[0]['enroll_date'];
-                $new_shoe = new Shoe($shoe_name, $enroll_date, $id);
+                $new_shoe = new Shoe($shoe_name, $id);
                 array_push($shoes, $new_shoe);
             }
             return $shoes;
@@ -71,8 +70,9 @@
         //Retrieve all stores from stores table:
         static function getAll() {
             $returned_stores = $GLOBALS['DB']->query("SELECT * FROM stores;");
+            $found_stores = $returned_stores->fetchAll(PDO::FETCH_ASSOC);
             $stores = array();
-            foreach ($returned_stores as $store) {
+            foreach ($found_stores as $store) {
                 $store_name = $store['store_name'];
                 $id = $store['id'];
                 $new_store = new Store($store_name, $id);
