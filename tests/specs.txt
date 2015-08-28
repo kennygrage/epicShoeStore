@@ -1,0 +1,19 @@
+Stores Tests
+1. Get store name
+2. Set store name
+3. Get Id
+4. Test save function
+5. Test update function
+6. Delete store
+7. Get all stores
+8. Find a store by Id
+
+Shoes Tests
+1. Get shoe name
+2. Set shoe name
+3. Get Id
+4. Test save function
+5. Test update function
+6. Delete shoe
+7. Get all shoes
+8. Find a shoe by Id
