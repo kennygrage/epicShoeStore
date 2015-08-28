@@ -32,12 +32,12 @@
         }
 
         function getShoes() {
-            $query = $GLOBALS['DB']->query("SELECT shoe_id FROM shoes_stores WHERE store_id = {$this->getId()};");
-            $shoe_ids = $query->fetchAll(PDO::FETCH_ASSOC);
+            $query = $GLOBALS['DB']->query("SELECT shoes_id FROM shoes_stores WHERE stores_id = {$this->getId()};");
+            $shoes_ids = $query->fetchAll(PDO::FETCH_ASSOC);
             $shoes = Array();
-            foreach($shoe_ids as $id) {
-                $shoe_id = $id['shoe_id'];
-                $result = $GLOBALS['DB']->query("SELECT * FROM shoes WHERE id = {$shoe_id};");
+            foreach($shoes_ids as $id) {
+                $shoes_id = $id['shoes_id'];
+                $result = $GLOBALS['DB']->query("SELECT * FROM shoes WHERE id = {$shoes_id};");
                 $returned_shoe = $result->fetchAll(PDO::FETCH_ASSOC);
                 $shoe_name = $returned_shoe[0]['shoe_name'];
                 $id = $returned_shoe[0]['id'];
@@ -53,13 +53,13 @@
         }
 
         function addShoe($shoe) {
-            $GLOBALS['DB']->exec("INSERT INTO shoes_stores (store_id, shoe_id) VALUES ({$this->getId()}, {$shoe->getId()});");
+            $GLOBALS['DB']->exec("INSERT INTO shoes_stores (stores_id, shoes_id) VALUES ({$this->getId()}, {$shoe->getId()});");
         }
 
         function deleteOne()
         {
             $GLOBALS['DB']->exec("DELETE FROM stores WHERE id = {$this->getId()};");
-            $GLOBALS['DB']->exec("DELETE FROM shoes_stores WHERE store_id = {$this->getId()};");
+            $GLOBALS['DB']->exec("DELETE FROM shoes_stores WHERE stores_id = {$this->getId()};");
         }
 
         //Clear all stores from stores table:
