@@ -13,7 +13,12 @@ Shoes Tests
 2. Set shoe name
 3. Get Id
 4. Test save function
-5. Test update function
-6. Delete shoe
-7. Get all shoes
-8. Find a shoe by Id
+5. Test get all
+6. Delete all
+7. Find shoe
+8. Add a store
+9. Update a shoe
+10. Delete a shoe
+11. Add a store
+12. Get a store
+13. Delete all
