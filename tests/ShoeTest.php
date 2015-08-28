@@ -67,6 +67,21 @@ class ShoeTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals(true, is_numeric($result));
     }
 
+    //Test save:
+    function test_save() {
+        //Arrange
+        $shoe_name = "Bob";
+        $id = null;
+        $test_shoe = new Shoe($shoe_name, $id);
+        $test_shoe->save();
+
+        //Act
+        $result = Shoe::getAll();
+
+        //Assert
+        $this->assertEquals([$test_shoe], $result);
+    }
+
 
 
 
