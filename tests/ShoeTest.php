@@ -27,10 +27,9 @@ class ShoeTest extends PHPUnit_Framework_TestCase {
     function test_getShoeName() {
 
         //Arrange
-        $shoe_name = "Bob";
-        $enroll_date = "2012-10-20";
+        $shoe_name = "Nike";
         $id = 1;
-        $test_shoe = new Shoe($shoe_name, $enroll_date, $id);
+        $test_shoe = new Shoe($shoe_name, $id);
         $test_shoe->save();
 
         //Act
@@ -39,6 +38,22 @@ class ShoeTest extends PHPUnit_Framework_TestCase {
         //Assert
         $this->assertEquals($result, $shoe_name);
     }
+
+    function testSetShoeName() {
+        //Arrange
+        $shoe_name = "Nike";
+        $id = 1;
+        $test_shoe = new Shoe($shoe_name, $id);
+
+        //Act
+        $test_shoe->setShoeName("Adidas");
+        $result = $test_shoe->getShoeName();
+
+        //Assert
+        $this->assertEquals("Adidas", $result);
+    }
+
+
 
 }// End class
 
