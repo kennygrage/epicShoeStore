@@ -70,7 +70,7 @@ class ShoeTest extends PHPUnit_Framework_TestCase {
     //Test save:
     function test_save() {
         //Arrange
-        $shoe_name = "Bob";
+        $shoe_name = "Nike";
         $id = null;
         $test_shoe = new Shoe($shoe_name, $id);
         $test_shoe->save();
@@ -85,12 +85,12 @@ class ShoeTest extends PHPUnit_Framework_TestCase {
     //Test getAll:
     function test_getAll() {
         //Arrange
-        $shoe_name = "Bob";
+        $shoe_name = "Nike";
         $id = null;
         $test_shoe = new Shoe($shoe_name, $id);
         $test_shoe->save();
 
-        $shoe_name2 = "Sue";
+        $shoe_name2 = "Adidas";
         $test_shoe2 = new Shoe($shoe_name2, $id);
         $test_shoe2->save();
 
@@ -99,6 +99,26 @@ class ShoeTest extends PHPUnit_Framework_TestCase {
 
         //Assert
         $this->assertEquals([$test_shoe, $test_shoe2], $result);
+    }
+
+    //Test deleteAll:
+    function test_deleteAll(){
+        //Arrange
+        $shoe_name = "Nike";
+        $id = null;
+        $test_shoe = new Shoe($shoe_name, $id);
+        $test_shoe->save();
+
+        $shoe_name2 = "Adidas";
+        $test_shoe2 = new Shoe($shoe_name2, $id);
+        $test_shoe2->save();
+
+        //Act
+        Shoe::deleteAll();
+        $result = Shoe::getAll();
+
+        //Assert
+        $this->assertEquals([], $result);
     }
 
 
