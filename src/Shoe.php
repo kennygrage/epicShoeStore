@@ -25,7 +25,7 @@ class Shoe {
 
     //Add a store to a shoe:
     function addStore($store){
-        $GLOBALS['DB']->exec("INSERT INTO shoes_stores (store_id, shoe_id)
+        $GLOBALS['DB']->exec("INSERT INTO shoes_stores (stores_id, shoes_id)
                     VALUES ({$store->getId()}, {$this->getId()});");
     }
 
@@ -33,8 +33,8 @@ class Shoe {
     function getStores() {
         //join statement
         $found_stores = $GLOBALS['DB']->query("SELECT stores.* FROM
-        shoes JOIN shoes_stores ON (shoes.id = shoes_stores.shoe_id)
-                 JOIN stores ON (shoes_stores.store_id = stores.id)
+        shoes JOIN shoes_stores ON (shoes.id = shoes_stores.shoes_id)
+                 JOIN stores ON (shoes_stores.stores_id = stores.id)
                  WHERE (shoes.id = {$this->getId()});");
          //convert output of the join statement into an array
          $found_stores = $found_stores->fetchAll(PDO::FETCH_ASSOC);
@@ -64,7 +64,7 @@ class Shoe {
     //delete one shoe
     function deleteOne() {
         $GLOBALS['DB']->exec("DELETE FROM shoes WHERE id = {$this->getId()};");
-        $GLOBALS['DB']->exec("DELETE FROM shoes_stores WHERE shoe_id = {$this->getId()};");
+        $GLOBALS['DB']->exec("DELETE FROM shoes_stores WHERE shoes_id = {$this->getId()};");
     }
 
     //Clear all shoes from shoes table:

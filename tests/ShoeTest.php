@@ -141,6 +141,27 @@ class ShoeTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals($test_shoe, $result);
     }
 
+    //Test add store to shoe
+    function test_addStore(){
+        //Arrange
+        $store_name = "New Balance";
+        $id = 1;
+        $test_store = new Store($store_name, $id);
+        $test_store->save();
+
+        $shoe_name = "Nike";
+        $id2 = 2;
+        $test_shoe = new Shoe($shoe_name, $id2);
+        $test_shoe->save();
+
+        //Act
+        $test_shoe->addStore($test_store);
+        $result = $test_shoe->getStores();
+
+        //Assert
+        $this->assertEquals([$test_store], $result);
+    }
+
 
 
 
